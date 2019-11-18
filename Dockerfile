@@ -3,12 +3,10 @@
 # NGINX x ALPINE.
 FROM nginx:1.17.5-alpine
 
-# MAINTAINER OF THE PACKAGE.
-LABEL maintainer="Neo Ighodaro <neo@creativitykills.co>"
-
 # INSTALL SOME SYSTEM PACKAGES.
 RUN apk --update --no-cache add ca-certificates \
     bash \
+    curl \
     supervisor
 
 # trust this project public key to trust the packages.
@@ -35,7 +33,8 @@ RUN apk add --no-cache --update php-fpm \
     php-zlib \
     php-json \
     php-xml && \
-    ln -s /usr/bin/php7 /usr/bin/php
+    ln -s /usr/bin/php7 /usr/bin/php && \
+    rm -rf /var/cache/apk/*
 
 # CONFIGURE WEB SERVER.
 RUN mkdir -p /var/www && \
