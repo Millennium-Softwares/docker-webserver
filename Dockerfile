@@ -32,6 +32,7 @@ RUN apk add --no-cache --update php-fpm \
     php-ctype \
     php-zlib \
     php-json \
+    php-curl \
     php-xml && \
     ln -s /usr/bin/php7 /usr/bin/php && \
     rm -rf /var/cache/apk/*
